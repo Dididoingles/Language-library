@@ -4,48 +4,101 @@
     --brand-black: #000000;
     --brand-grey: #333333;
 }
+
 body {
     background-color: var(--brand-black);
     color: var(--brand-white);
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding-bottom: 100px;
+    padding: 0;
+    overflow-x: hidden;
 }
+
+/* Centralização do Cabeçalho */
+.main-header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
 .brand-title {
     color: var(--brand-red);
     font-weight: 700;
-    font-size: 2.5rem;
-    margin-top: 50px;
+    font-size: 3rem;
+    margin: 0 auto 10px auto;
 }
+
+.brand-subtitle {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.fire-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -30px; /* Ajuste para aproximar do texto se necessário */
+}
+
+/* Container dos Livros */
 .book-group {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 80px 0;
+    margin: 100px 0;
 }
+
 .book-item {
     position: relative;
     width: 250px;
-    transition: all 0.5s ease;
+    transition: transform 0.5s ease;
     cursor: pointer;
 }
+
+/* Lógica de sobreposição 25% */
 .book-item:nth-child(2) { margin-left: -62px; z-index: 2; }
 .book-item:nth-child(3) { margin-left: -62px; z-index: 3; }
-.book-item:hover { transform: translateX(-30%); z-index: 10; }
-.book-cover { width: 100%; border-radius: 5px; }
+
+/* Animação: Move 30% para a esquerda */
+.book-item:hover {
+    transform: translateX(-30%);
+    z-index: 10;
+}
+
+.book-cover {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+}
+
+/* Ajuste da Tag: Canto superior esquerdo e menor */
 .btn-reveal {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 10px;
+    left: 10px;
     background-color: var(--brand-red);
-    padding: 10px 20px;
+    color: white;
+    padding: 6px 12px;
     border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
 }
-.book-item:hover .btn-reveal { opacity: 1; }
+
+.book-item:hover .btn-reveal {
+    opacity: 1;
+}
+
+/* Mobile: um abaixo do outro */
 @media (max-width: 768px) {
     .book-group { flex-direction: column; }
-    .book-item { margin-left: 0 !important; margin-bottom: 40px; }
+    .book-item { margin-left: 0 !important; margin-bottom: 50px; }
+    .book-item:hover { transform: scale(1.05); } /* Animação mais simples no mobile */
+}
+
+#loading-message {
+    text-align: center;
+    padding: 20px;
 }

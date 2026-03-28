@@ -3,53 +3,28 @@ const API_URL = "https://script.google.com/macros/s/AKfycby3NxWcJZBdiej2WkZSEh2_
 async function loadLibrary() {
     const grid = document.getElementById('books-grid');
     const loading = document.getElementById('loading-message');
-
     try {
         const response = await fetch(API_URL);
         const books = await response.json();
-        
-        if (loading) loading.style.display = 'none';
-
+        loading.style.display = 'none';
         for (let i = 0; i < books.length; i += 3) {
             const groupData = books.slice(i, i + 3);
             const groupDiv = document.createElement('div');
             groupDiv.className = 'book-group';
-
             groupData.forEach(book => {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'book-item';
-
-                // 1. Criamos a tag
-                const badge = document.createElement('div');
-                badge.className = 'btn-reveal';
-                badge.innerText = 'Conheça o ebook';
-
-                // 2. Criamos a imagem com lógica de carregamento
-                const img = new Image();
-                img.src = book.Capa;
-                img.className = 'book-cover';
-
-                // Quando a imagem baixa 100%, o JS avisa o CSS
-                img.onload = () => {
-                    img.classList.add('img-loaded');
-                    bookDiv.classList.add('loaded-state');
-                };
-
-                bookDiv.appendChild(badge);
-                bookDiv.appendChild(img);
-
+                bookDiv.innerHTML = `<img src="${book.Capa}" class="book-cover"><div class="btn-reveal">Conheça o ebook</div>`;
                 bookDiv.onclick = () => {
                     const params = new URLSearchParams(book).toString();
                     window.location.href = `detalhes.html?${params}`;
                 };
-
                 groupDiv.appendChild(bookDiv);
             });
             grid.appendChild(groupDiv);
         }
     } catch (e) {
-        if (loading) loading.innerText = "Erro ao carregar materiais.";
+        loading.innerText = "Erro ao carregar livros.";
     }
 }
-
 loadLibrary();

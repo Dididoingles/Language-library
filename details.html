@@ -134,20 +134,29 @@
         </div>
     </main>
 
-    <script>
-        // Lógica para capturar os parâmetros da URL enviados pelo script.js da index
+  <script>
+        // Lógica para capturar os parâmetros da URL
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // Mapeia os dados da planilha para os elementos da página
-        // Certifique-se de que os nomes (Titulo, Capa, etc) batem com o cabeçalho da sua planilha
-        if (urlParams.has('Titulo')) {
-            document.getElementById('book-titulo').innerText = urlParams.get('Titulo');
+
+        // Verificamos "Título" com acento (como está vindo da sua planilha)
+        if (urlParams.has('Título')) {
+            document.getElementById('book-titulo').innerText = urlParams.get('Título');
             document.getElementById('book-descricao').innerText = urlParams.get('Descrição');
             document.getElementById('book-capa').src = urlParams.get('Capa');
             document.getElementById('book-categoria').innerText = urlParams.get('Categoria');
             document.getElementById('book-download').href = urlParams.get('LinkEbook');
-            document.title = `${urlParams.get('Titulo')} - Language Library`;
-        } else {
+            
+            document.title = `${urlParams.get('Título')} - Language Library`;
+        } 
+        // Caso a planilha mude para sem acento no futuro, este "else" garante que funcione
+        else if (urlParams.has('Titulo')) {
+            document.getElementById('book-titulo').innerText = urlParams.get('Titulo');
+            document.getElementById('book-descricao').innerText = urlParams.get('Descricao');
+            document.getElementById('book-capa').src = urlParams.get('Capa');
+            document.getElementById('book-categoria').innerText = urlParams.get('Categoria');
+            document.getElementById('book-download').href = urlParams.get('LinkEbook');
+        } 
+        else {
             document.getElementById('book-titulo').innerText = "Material não encontrado";
         }
     </script>

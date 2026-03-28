@@ -36,7 +36,7 @@ body {
 .fire-container {
     display: flex;
     justify-content: center;
-    margin-top: -60px; /* Ajuste para aproximar do texto se necessário */
+    margin-top: -10px; /* Ajuste para aproximar do texto se necessário */
 }
 
 /* Container dos Livros */

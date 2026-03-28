@@ -9,9 +9,9 @@ async function loadLibrary() {
         const response = await fetch(API_URL);
         const books = await response.json();
 
-        loading.style.display = 'none'; // Esconde o aviso de carregando [cite: 65]
+        loading.style.display = 'none'; // Esconde o aviso de carregando 
 
-        // Organiza os livros em grupos de 3 [cite: 9]
+        // Organiza os livros em grupos de 3 
         for (let i = 0; i < books.length; i += 3) {
             const groupData = books.slice(i, i + 3);
             const groupDiv = document.createElement('div');
@@ -25,7 +25,7 @@ async function loadLibrary() {
                     <div class="btn-reveal">Conheça o ebook</div>
                 `;
                 
-                // Ao clicar, envia os dados para a página de detalhes [cite: 47]
+                // Ao clicar, envia os dados para a página de detalhes 
                 bookDiv.onclick = () => {
                     const params = new URLSearchParams(book).toString();
                     window.location.href = `detalhes.html?${params}`;

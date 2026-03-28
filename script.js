@@ -40,7 +40,7 @@ async function loadLibrary() {
 
                 bookDiv.onclick = () => {
                     const params = new URLSearchParams(book).toString();
-                    window.location.href = `detalhes.html?${params}`;
+                    window.location.href = `details.html?${params}`;
                 };
 
                 groupDiv.appendChild(bookDiv);

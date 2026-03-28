@@ -38,6 +38,45 @@ body {
     justify-content: center;
     margin-top: 30px; /* Ajuste para aproximar do texto se necessário */
 }
+/* --- INÍCIO DA MODIFICAÇÃO PARA SKELETON --- */
+.book-item {
+    position: relative;
+    width: 250px;
+    min-height: 350px; 
+    background: #1a1a1a; /* Fundo para o skeleton */
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+/* O brilho animado (Shimmer) */
+.book-item:not(.loaded-state)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% { left: 100%; }
+}
+
+.book-cover {
+    width: 100%;
+    display: block;
+    opacity: 0; /* Começa invisível para o fade-in */
+    transition: opacity 0.8s ease-in-out;
+}
+
+.img-loaded {
+    opacity: 1; /* Ativado pelo JS */
+}
+/* --- FIM DA MODIFICAÇÃO PARA SKELETON --- */
 
 /* Container dos Livros */
 .book-group {

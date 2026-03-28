@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Material - Language Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para o layout de detalhes */
+        .details-wrapper {
+            max-width: 1000px;
+            margin: 80px auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            padding: 0 20px;
+        }
+
+        /* Animação de Entrada: Capa (Slide da esquerda) */
+        .col-left {
+            flex: 0 0 350px;
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        /* Animação de Entrada: Texto (Slide da direita) */
+        .col-right {
+            flex: 1;
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .detail-cover {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .category-tag {
+            display: inline-block;
+            background-color: var(--brand-grey);
+            color: var(--brand-white);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .book-title {
+            font-size: 2.5rem;
+            color: var(--brand-red);
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+
+        .book-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        /* Animação de Entrada: Botão (Fade-in) */
+        .download-btn {
+            display: inline-block;
+            background-color: var(--brand-red);
+            color: var(--brand-white);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.8s forwards; /* Começa após o slide */
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 40px;
+            color: var(--brand-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Keyframes das Animações */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .details-wrapper { flex-direction: column; align-items: center; text-align: center; margin: 40px auto; }
+            .col-left { flex: 0 0 auto; width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1 class="brand-title">Language Library</h1>
+    </header>
+
+    <main class="details-wrapper">
+        <div class="col-left">
+            <img id="book-capa" src="" alt="Capa do Ebook" class="detail-cover">
+        </div>
+
+        <div class="col-right">
+            <span id="book-categoria" class="category-tag">Categoria</span>
+            <h2 id="book-titulo" class="book-title">Carregando título...</h2>
+            <p id="book-descricao" class="book-description">Carregando descrição...</p>
+            
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+                Licença: Material gratuito para uso pessoal e educacional.
+            </p>
+            
+            <a id="book-download" href="#" class="download-btn" target="_blank">Fazer Download</a>
+            
+            <a href="index.html" class="back-link">← Voltar para a biblioteca</a>
+        </div>
+    </main>
+
+    <script>
+        // Lógica para capturar os parâmetros da URL enviados pelo script.js da index
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Mapeia os dados da planilha para os elementos da página
+        // Certifique-se de que os nomes (Titulo, Capa, etc) batem com o cabeçalho da sua planilha
+        if (urlParams.has('Titulo')) {
+            document.getElementById('book-titulo').innerText = urlParams.get('Titulo');
+            document.getElementById('book-descricao').innerText = urlParams.get('Descrição');
+            document.getElementById('book-capa').src = urlParams.get('Capa');
+            document.getElementById('book-categoria').innerText = urlParams.get('Categoria');
+            document.getElementById('book-download').href = urlParams.get('LinkEbook');
+            document.title = `${urlParams.get('Titulo')} - Language Library`;
+        } else {
+            document.getElementById('book-titulo').innerText = "Material não encontrado";
+        }
+    </script>
+</body>
+</html>

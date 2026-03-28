@@ -11,15 +11,18 @@
     <header class="main-header">
         <h1 class="brand-title">Language Library</h1>
         <p class="brand-subtitle">Aqui você encontra todos os nossos materiais gratuitos<br>Clique e baixe!</p>
+        
         <div class="fire-container">
-            <dotlottie-player src="https://lottie.host/b75eaae9-c96c-4d98-b050-e09bb4a57387/OMo9kLFmIT.lottie" background="transparent" speed="1" style="width: 150px; height: 150px; margin: 0 auto;" loop autoplay></dotlottie-player>
+            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js" type="module"></script>
+            <dotlottie-wc src="https://lottie.host/b75eaae9-c96c-4d98-b050-e09bb4a57387/OMo9kLFmlT.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
         </div>
     </header>
+
     <main id="library-container">
         <div id="loading-message">Carregando livros...</div>
         <div id="books-grid"></div>
     </main>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
     <script src="script.js"></script>
 </body>
 </html>

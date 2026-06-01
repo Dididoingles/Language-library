@@ -33,11 +33,6 @@ body {
     margin-bottom: 20px;
 }
 
-.fire-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px; /* Ajuste para aproximar do texto se necessário */
-}
 /* --- INÍCIO DA MODIFICAÇÃO PARA SKELETON --- */
 .book-item {
     position: relative;
